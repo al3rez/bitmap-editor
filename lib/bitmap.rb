@@ -14,6 +14,8 @@ class Bitmap
   def initialize(m, n)
     @m = m.to_i
     @n = n.to_i
+    raise ArgumentError if @m.zero? || @n.zero?
+    raise ArgumentError unless @m.between?(1, 250) || @n.between?(1, 250)
     @table = build
   end
 

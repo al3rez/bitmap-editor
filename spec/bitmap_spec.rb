@@ -6,6 +6,18 @@ describe "Bitmap" do
       bitmap = Bitmap.new(5, 5)
       expect(bitmap.table).to eq(Matrix.build(5, 5) { |row, col| "O" })
     end
+
+    context "when bitmaps doesn't start at coordinates 1,1" do
+      it "raises an exception" do
+        expect { Bitmap.new(0, 1) }.to raise_exception(ArgumentError)
+      end
+    end
+
+    context "when pixel coordinates are not between 1 and 250" do
+      it "raises an exception" do
+        expect { Bitmap.new(300, 300) }.to raise_exception(ArgumentError)
+      end
+    end
   end
 
   describe "#paint!" do
